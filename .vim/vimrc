@@ -1,0 +1,37 @@
+colorscheme desert
+set nocompatible
+filetype off
+let mapleader = "."
+
+" Local dirs
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+set undodir=~/.vim/undo
+
+
+" Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" core Vundle
+Plugin 'gmarik/Vundle.vim'
+" quicktask
+Plugin 'https://github.com/aaronbieber/vim-quicktask.git'
+" vim-task
+Plugin 'https://github.com/samsonw/vim-task.git'
+" emmet
+Plugin 'https://github.com/mattn/emmet-vim.git'
+
+call vundle#end()
+filetype plugin indent on
+
+
+" vim-task
+:map <Leader>T :setfiletype task<CR>
+:map <Leader>. :call Toggle_task_status()<CR>
+
+
+" remaps
+command W w
+command Wq wq
+command Q q
