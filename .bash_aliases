@@ -39,14 +39,18 @@ alias _137="_sa"
 alias _138="_ch"
 alias _170="_b"
 
+#vodafone stuff
 alias _vs="ssh stefna@vs"
 alias _v177="ssh stefna@v177"
-
 alias _v="ssh stefna@voda"
+alias _vpn-vodafone="sudo vpnc-connect vodafone"
+
 alias _unak="ssh root@www.unak.is"
 
 alias _my="mysql -u root -pasdf"
 alias _mdb1="_z"
+
+alias rsyncx="rsync -avz --exclude 'static*' --exclude 'cache*'"
 
 alias such=git 
 alias very=git 
