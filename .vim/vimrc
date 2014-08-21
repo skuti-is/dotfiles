@@ -55,14 +55,25 @@ set formatoptions+=2 " Use indent from 2nd line of a paragraph
 set formatoptions+=l " Don't break lines that are already long
 set formatoptions+=1 " Break before 1-letter words
 
+" Statusline
+set statusline=   " clear the statusline for when vimrc is reloaded
+set statusline+=%-3.3n\                      " buffer number
+set statusline+=%f\                          " file name
+set statusline+=%h%m%r%w                     " flags
+set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+set statusline+=%{&fileformat}]              " file format
+set statusline+=%=                           " right align
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
+set statusline+=%b,0x%-8B\                   " current char
+set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " core Vundle
 Plugin 'gmarik/Vundle.vim'
-" quicktask
-Plugin 'https://github.com/aaronbieber/vim-quicktask.git'
 " vim-task
 Plugin 'https://github.com/samsonw/vim-task.git'
 " emmet
@@ -76,6 +87,9 @@ filetype plugin indent on
 :map <Leader>T :setfiletype task<CR>
 :map <Leader>. :call Toggle_task_status()<CR>
 
+
+" emmet
+let g:user_emmet_leader_key='<C-E>' " remap leader
 
 " Remaps
 command W w
