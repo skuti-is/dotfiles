@@ -9,7 +9,7 @@ set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
 " Window size
-set lines=50 
+set lines=57 
 set columns=117
 
 " Settings
