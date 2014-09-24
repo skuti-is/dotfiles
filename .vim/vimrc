@@ -9,63 +9,64 @@ set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
 " Window size
-set lines=60 
+set lines=50 
 set columns=117
 
 " Settings
-set autoindent " Copy indent from last line when starting new line.
-set backspace=indent,eol,start
-set cursorline " Highlight current line
-set diffopt+=iwhite " Ignore whitespace changes (focus on code changes)
-set encoding=utf-8 nobomb " BOM often causes trouble
-set esckeys " Allow cursor keys in insert mode.
-"set expandtab " Always uses spaces instead of tab characters
-set history=1000 " Increase history from 20 default to 1000
-set hlsearch " Highlight searches
-set ignorecase " Ignore case of searches.
-set incsearch " Highlight dynamically as pattern is typed.
-set laststatus=2 " Always show status line
-set magic " Enable extended regexes.
-set noerrorbells " Disable error bells.
-"set nu " Enable line numbers.
-set ruler " Show the cursor position
-set scrolloff=3 " Start scrolling three lines before horizontal border of window.
-"set shiftwidth=4 " The # of spaces for indenting. Use with extendtab.
-set shortmess=atI " Don't show the intro message when starting vim.
-set showmode " Show the current mode.
-set sidescrolloff=3 " Start scrolling three columns before vertical border of window.
-set smartcase " Ignore 'ignorecase' if search patter contains uppercase characters.
-set tabstop=4 " size of a hard tabstop
-set title " Show the filename in the window titlebar.
-set ttyfast " Send more characters at a given time.
-set undofile " Persistent Undo.
-set visualbell " Use visual bell instead of audible bell (annnnnoying)
-set wildchar=<TAB> " Character for CLI expansion (TAB-completion).
+set autoindent 					" Copy indent from last line when starting new line.
+set backspace=indent,eol,start	" Backspace behavior
+set cursorline 					" Highlight current line
+set diffopt+=iwhite 			" Ignore whitespace changes (focus on code changes)
+set encoding=utf-8 nobomb 		" BOM often causes trouble
+set esckeys 					" Allow cursor keys in insert mode.
+"set expandtab 					" Always uses spaces instead of tab characters
+set history=1000 				" Increase history from 20 default to 1000
+set hlsearch 					" Highlight searches
+set ignorecase 					" Ignore case of searches.
+set incsearch 					" Highlight dynamically as pattern is typed.
+set laststatus=2 				" Always show status line
+set magic 						" Enable extended regexes.
+set noerrorbells 				" Disable error bells.
+"set nu 						" Enable line numbers.
+set ruler 						" Show the cursor position
+set scrolloff=3 				" Start scrolling three lines before horizontal border of window.
+"set shiftwidth=4 				" The # of spaces for indenting. Use with extendtab.
+set shortmess=atI 				" Don't show the intro message when starting vim.
+set showmode 					" Show the current mode.
+set sidescrolloff=3 			" Start scrolling three columns before vertical border of window.
+set smartcase 					" Ignore 'ignorecase' if search patter contains uppercase characters.
+set tabstop=4 					" size of a hard tabstop
+set title 						" Show the filename in the window titlebar.
+set ttyfast 					" Send more characters at a given time.
+set undofile 					" Persistent Undo.
+set visualbell 					" Use visual bell instead of audible bell (annnnnoying)
+set wildchar=<TAB> 				" Character for CLI expansion (TAB-completion).
 
 " Folding
-"set foldcolumn=4 " Column to show folds
-"set foldenable
-"set foldlevel=2 " set foldlevelstart=2 " Sets `foldlevel` when editing a new buffer
-"set foldmethod=syntax " Markers are used to specify folds.
-"set foldminlines=0 " Allow folding single lines
-"set foldnestmax=3 " Set max fold nesting level
+"set foldcolumn=4 				" Column to show folds
+"set foldenable					" Enable folding
+"set foldlevel=2 				
+"set foldlevelstart=2 			" Sets `foldlevel` when editing a new buffer
+"set foldmethod=syntax 			" Markers are used to specify folds.
+"set foldminlines=0 			" Allow folding single lines
+"set foldnestmax=3 				" Set max fold nesting level
 
 " Formatting
 set formatoptions=
-set formatoptions+=c " Format comments
-set formatoptions+=r " Continue comments by default
-set formatoptions+=o " Make comment when using o or O from comment line
-set formatoptions+=q " Format comments with gq
-set formatoptions+=n " Recognize numbered lists
-set formatoptions+=2 " Use indent from 2nd line of a paragraph
-set formatoptions+=l " Don't break lines that are already long
-set formatoptions+=1 " Break before 1-letter words
+set formatoptions+=c 			" Format comments
+set formatoptions+=r 			" Continue comments by default
+set formatoptions+=o 			" Make comment when using o or O from comment line
+set formatoptions+=q 			" Format comments with gq
+set formatoptions+=n 			" Recognize numbered lists
+set formatoptions+=2 			" Use indent from 2nd line of a paragraph
+set formatoptions+=l 			" Don't break lines that are already long
+set formatoptions+=1 			" Break before 1-letter words
 
 " Statusline
-set statusline=   " clear the statusline for when vimrc is reloaded
-set statusline+=%-3.3n\                      " buffer number
-set statusline+=%f\                          " file name
-set statusline+=%h%m%r%w                     " flags
+set statusline=   				" clear the statusline for when vimrc is reloaded
+set statusline+=%-3.3n\			" buffer number
+set statusline+=%f\				" file name
+set statusline+=%h%m%r%w		" flags
 set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
 set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
 set statusline+=%{&fileformat}]              " file format
