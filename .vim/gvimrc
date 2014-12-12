@@ -8,7 +8,11 @@ set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
-"# Settings
+"#Window size
+"set lines=57					" This changes size of terminal windows 
+set columns=117
+
+"#Settings
 "set autoindent					" Copy indent from last line when starting new line.
 set backspace=indent,eol,start	" Backspace behavior
 set cursorline 					" Highlight current line
@@ -23,7 +27,7 @@ set incsearch 					" Highlight dynamically as pattern is typed.
 set laststatus=2 				" Always show status line
 set magic 						" Enable extended regexes.
 set noerrorbells 				" Disable error bells.
-"set nu 						" Enable line numbers.
+set nu	 						" Enable line numbers.
 set ruler 						" Show the cursor position
 set scrolloff=3 				" Start scrolling three lines before horizontal border of window.
 "set shiftwidth=4 				" The # of spaces for indenting. Use with extendtab.
