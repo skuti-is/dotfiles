@@ -38,29 +38,6 @@ set undofile 					" Persistent Undo.
 set visualbell 					" Use visual bell instead of audible bell (annnnnoying)
 set wildchar=<TAB> 				" Character for CLI expansion (TAB-completion).
 
-"#Formatting
-set formatoptions=
-set formatoptions+=c 			" Format comments
-set formatoptions+=r 			" Continue comments by default
-set formatoptions+=o 			" Make comment when using o or O from comment line
-set formatoptions+=q 			" Format comments with gq
-set formatoptions+=n 			" Recognize numbered lists
-set formatoptions+=2 			" Use indent from 2nd line of a paragraph
-set formatoptions+=l 			" Don't break lines that are already long
-set formatoptions+=1 			" Break before 1-letter words
-
-"#Statusline
-set statusline=   				" clear the statusline for when vimrc is reloaded
-set statusline+=%-3.3n\			" buffer number
-set statusline+=%f\				" file name
-set statusline+=%h%m%r%w		" flags
-set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-set statusline+=%{&fileformat}]              " file format
-set statusline+=%=                           " right align
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
-set statusline+=%b,0x%-8B\                   " current char
-set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 
 "#Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -69,9 +46,11 @@ call vundle#begin()
 "#core Vundle
 Plugin 'gmarik/Vundle.vim'
 "#vim-task
-Plugin 'https://github.com/samsonw/vim-task.git'
+"Plugin 'https://github.com/samsonw/vim-task.git'
 "#emmet
 Plugin 'https://github.com/mattn/emmet-vim.git'
+"#airline
+Plugin 'https://github.com/bling/vim-airline.git'
 
 call vundle#end()
 filetype plugin indent on
@@ -85,10 +64,12 @@ filetype plugin indent on
 "#emmet
 let g:user_emmet_leader_key='<C-E>' " remap leader
 
+
 "#Remaps
 command W w
 command Wq wq
 command Q q
+
 
 "#Methods
 
