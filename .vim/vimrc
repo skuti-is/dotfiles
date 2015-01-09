@@ -46,11 +46,11 @@ call vundle#begin()
 "#core Vundle
 Plugin 'gmarik/Vundle.vim'
 "#vim-task
-"Plugin 'https://github.com/samsonw/vim-task.git'
+Plugin 'thrstn/vim-task.git'
 "#emmet
-Plugin 'https://github.com/mattn/emmet-vim.git'
+Plugin 'mattn/emmet-vim.git'
 "#airline
-Plugin 'https://github.com/bling/vim-airline.git'
+Plugin 'bling/vim-airline.git'
 
 call vundle#end()
 filetype plugin indent on
