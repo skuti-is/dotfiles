@@ -74,9 +74,9 @@ let g:airline_powerline_fonts = 1
 
 
 "#Remaps
-command W w
-command Wq wq
-command Q q
+"command W w
+"command Wq wq
+"command Q q
 
 "#Methods
 
