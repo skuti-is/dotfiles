@@ -1,0 +1,22 @@
+127.0.0.1   localhost thrstnt1.stefna.is thrstnt2.stefna.is thrstnt3.stefna.is
+127.0.0.1   moyadb1 moyadb1.ie-c.stefna.is snow.n.stefna.is
+127.0.0.1   vodafone.stefna.is
+127.0.1.1   thrstn-desktop
+
+52.17.148.99    s saline
+54.76.32.59     ma manjaro
+54.171.237.196  p pinguy
+82.221.22.150   d dragora
+82.221.48.132   pe peppermint
+
+194.144.200.177 v177
+194.144.200.60  vs stefna.vodafone.is
+192.168.13.50   voda-innri innri.vodafone.is firma.itnet.is
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+

@@ -11,7 +11,7 @@ set undodir=~/.vim/undo
 
 "#Window size
 "set lines=57					" This changes size of terminal windows 
-set columns=117
+set columns=104
 
 "#Settings
 "set autoindent					" Copy indent from last line when starting new line.
@@ -67,6 +67,7 @@ call vundle#end()
 
 "#emmet
 let g:user_emmet_leader_key='<C-E>' " remap leader
+let g:user_emmet_mode='a'
 
 
 "#airline

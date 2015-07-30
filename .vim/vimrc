@@ -62,7 +62,7 @@ filetype plugin indent on
 
 
 "#emmet
-let g:user_emmet_leader_key='<C-E>' " remap leader
+"let g:user_emmet_leader_key='<C-E>' " remap leader
 
 
 "#Remaps
