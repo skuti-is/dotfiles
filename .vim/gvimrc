@@ -1,7 +1,7 @@
 colorscheme desert
 set guifont=Anonymous\ Pro\ 12
 set nocompatible
-filetype off
+filetype on
 let mapleader = "."
 
 "#Local dirs
