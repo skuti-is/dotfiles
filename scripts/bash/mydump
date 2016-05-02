@@ -1,0 +1,52 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+	echo "Usage: $0 like [moya_dir]"
+	exit 1
+fi
+
+like=$1
+
+s=$(/usr/local/sbin/getMoyaDbInfo $2)
+r=$?
+if [ $r -ne 0 ]; then
+	echo $s
+	exit $r
+fi
+oldIFS=$IFS
+IFS=:
+set -- $s
+db=$1
+user=$2
+pass=$3
+host=$4
+IFS=$oldIFS
+
+if [ "x$db" == "x" ]; then
+	echo "Could not detect db"
+	exit 2
+fi
+
+if [ "$like" == "%" ]; then
+	prefix=$db
+	tables=""
+else
+	prefix=$like
+	getQuery="mysql -u ${user} -p${pass} -h $host -e \"show tables like '${like}%'\" $db"
+	echo "GQ: $getQuery"
+
+	tables=$(mysql -u ${user} -p${pass} -h $host -e "show tables like '${like}%'" $db| grep -v Tables_in)
+
+	if [ "$tables" == "" ]; then
+		echo "Error: no tables found"
+	fi
+fi
+
+d=$(date +%Y%m%d_%H%M)
+dumpfile=~/sql/$db-$prefix-$d.sql
+
+echo "Dumping tables: '$tables' to $dumpfile"
+
+mysqldump -Q --lock-tables=false -u${user} -p${pass} -h $host ${db} $tables > $dumpfile
+
+
