@@ -19,40 +19,43 @@ fi
 TEMPFILE="____temp____";
 
 function o_jpg() {
-	$imagemin -p -o 7 --plugin jpeg-recompress --method smallfry --quality high --min 60 "$1" > "$2"
+	$imagemin --plugin jpeg-recompress --method smallfry --quality high --min 60 "$1" > "$2"
 }
 function o_png() {
-	$imagemin -p -o 7 --plugin pngquant "$1" > "$2"
+	$imagemin --plugin pngquant "$1" > "$2"
 }
 function optimize() {
 	f="$1"
 	cmd="$2"
 	sizeBefore=$(stat -c%s "$1")
-	sizeBeforeFmt=$(numfmt --to=iec-i --suffix=B "$sizeBefore")
 
 	$cmd "$f" "$TEMPFILE"
 	
 	if [ -f $TEMPFILE ]; then
 		sizeAfter=$(stat -c%s "$TEMPFILE")
-		sizeAfterFmt=$(numfmt --to=iec-i --suffix=B "$sizeAfter")
-		let diff="$sizeBefore - $sizeAfter"
+		if [ $sizeAfter -gt 32 ]; then
+			let diff="$sizeBefore - $sizeAfter"
 
-		echo -n "$f: "
+			echo -n "$f: "
 
-		if [ $diff -gt 0 ]; then
-			perc=$(gawk "BEGIN { printf \"%.0f\", ($diff/$sizeBefore)*100}")
-			echo "$sizeBeforeFmt >> $sizeAfterFmt ($perc%)"
-			chown --reference=$f $TEMPFILE
-			chmod --reference=$f $TEMPFILE
-			mv $TEMPFILE $f
+			if [ $diff -gt 0 ]; then
+				perc=$(gawk "BEGIN { printf \"%.0f\", ($diff/$sizeBefore)*100}")
+				echo "($perc%)"
+				chown --reference=$f $TEMPFILE
+				chmod --reference=$f $TEMPFILE
+				mv $TEMPFILE $f
+			else
+				echo "No optimization"
+			fi
 		else
-			echo "No optimization"
+			echo "Optimisazion failed!"
 		fi
 	else
 		echo "Optimisazion failed!"
 	fi
 }
 function findCommand() {
+	#ret="-maxdepth 1 -iname *.$1"
 	ret="-iname *.$1"
 	shift
 	for i in $@; do
@@ -81,4 +84,4 @@ set -f
 echo "optimizing images"
 optimizeDir o_png png
 optimizeDir o_jpg jpg jpeg
-
+rm $TEMPFILE
