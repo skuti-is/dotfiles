@@ -1,14 +1,23 @@
-127.0.0.1   localhost thrstnt1.stefna.is thrstnt2.stefna.is thrstnt3.stefna.is
-127.0.0.1   moyadb1 moyadb1.ie-c.stefna.is snow.n.stefna.is
-127.0.0.1   vodafone.stefna.is
-127.0.1.1   thrstn-desktop
+# Local
+127.0.0.1   thrstnt1.stefna.is thrstnt2.stefna.is thrstnt3.stefna.is
+127.0.0.1   moyadb1 moyadb1.ie-c.stefna.is snow.n.stefna.is bridge.ie-c.stefna.is
+127.0.0.1   moyasolr1.ie-c.stefna.is moyasolr1
+127.0.0.1   aipws.th
+127.0.0.1	localhost
+127.0.1.1	thrstn
 
+# Stefna
 52.17.148.99    s saline
-54.76.32.59     ma manjaro
+54.76.32.59     m manjaro
 54.171.237.196  p pinguy
-82.221.22.150   d dragora
-82.221.48.132   pe peppermint
+52.19.46.82     d dragora
+52.19.103.249   pe peppermint heima.ask.is
+54.171.111.148  a archbang weather.n.stefna.is
+54.77.215.155   c crunchbang weather.n.stefna.is
+52.30.178.105   an antergos
+172.31.38.155   t tails
 
+# Vodafone
 194.144.200.177 v177
 194.144.200.60  vs stefna.vodafone.is
 192.168.13.50   voda-innri innri.vodafone.is firma.itnet.is
@@ -19,4 +28,3 @@ fe00::0 ip6-localnet
 ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
-

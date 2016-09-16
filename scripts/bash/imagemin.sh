@@ -2,29 +2,36 @@
 
 # Read parameters
 IMAGEPATH=$1
+MTIME=$2
 
+# Check for compressors
+CMDOPTIPNG=$(command -v optipng)
+CMDJPEGTRAN=$(command -v jpegtran)
 
-imagemin=$(command -v imagemin)
-if [ "$imagemin" == "" ]; then
-	echo -e "Could not find imagemin. Please install as root:\nnpm install --g imagemin-cli imagemin-jpeg-recompress imagemin-pngquant"
+if [ "$CMDOPTIPNG" == "" -o "$CMDJPEGTRAN" == "" ]; then
+	echo -e "Could not find compressors. Please install as root:\nnpm install -g optipng-bin jpegtran-bin"
 	exit 3
 fi
 
 # Set defaults
 if [ "$IMAGEPATH" == "" ]; then
-	echo "No path given. Usage: imagemin.sh PATH"
+	echo "No path given. Usage: $0 PATH (MTIME)"
+	echo "PATH: Path to files"
+	echo "MTIME: Optional. Only find files modified less than MTIME days ago"
 	exit 1
 fi
 
-TEMPFILE="____temp____";
+# Create temporary filename
+#TEMPFILE=".$(date +%s)-temp___";
+TEMPFILE="___temp___";
 
-function o_jpg() {
-	$imagemin --plugin jpeg-recompress --method smallfry --quality high --min 60 "$1" > "$2"
+function getJpegCmd() {
+	$CMDJPEGTRAN -copy none -progressive -optimize -trim -outfile "$2" "$1"
 }
-function o_png() {
-	$imagemin --plugin pngquant "$1" > "$2"
+function getPngCmd() {
+	$CMDOPTIPNG -silent -strip all -o2 -out "$2" "$1"
 }
-function optimize() {
+function optimizeFile() {
 	f="$1"
 	cmd="$2"
 	sizeBefore=$(stat -c%s "$1")
@@ -40,40 +47,46 @@ function optimize() {
 
 			if [ $diff -gt 0 ]; then
 				perc=$(gawk "BEGIN { printf \"%.0f\", ($diff/$sizeBefore)*100}")
-				echo "($perc%)"
-				chown --reference=$f $TEMPFILE
-				chmod --reference=$f $TEMPFILE
-				mv $TEMPFILE $f
+				echo -e "\e[32m($perc%)\e[0m"
+				chown --reference="$f" "$TEMPFILE"
+				chmod --reference="$f" "$TEMPFILE"
+				mv "$TEMPFILE" "$f"
 			else
-				echo "No optimization"
+				echo -e "\e[2mNo optimization\e[0m"
 			fi
 		else
-			echo "Optimisazion failed!"
+			echo -e "\e[31mOptimisazion failed!\e[0m Temporary file zero bytes."
 		fi
 	else
-		echo "Optimisazion failed!"
+		echo -e "\e[31mOptimisazion failed!\e[0m Temporary file not created."
 	fi
 }
 function findCommand() {
-	#ret="-maxdepth 1 -iname *.$1"
-	ret="-iname *.$1"
-	shift
+	ext=""
 	for i in $@; do
-		ret="$ret -o -iname *.$i"
+		if [ $ext ]; then
+			ext="$ext|$i"
+		else
+			ext="$i"
+		fi
 	done
+	ret="-regextype posix-egrep -regex .*\.($ext)$"
+
+	if [ $MTIME ]; then
+		ret="$ret -mtime -$MTIME"
+	fi
+
 	echo $ret
 }
 function optimizeDir() {
 	cmd=$1
 	shift
 	findCmd=$(findCommand $@)
-	for f in $(find $IMAGEPATH $findCmd); do
-		if [ -w "$f" ]; then
-			optimize "$f" "$cmd"
-		else
-			echo "$f is not writable"
-		fi
-	done;
+
+	# we need to use while read to optimize files with space in filename
+	find $IMAGEPATH $findCmd | while read -r FILE;do
+		optimizeFile "$FILE" "$cmd"
+	done
 }
 
 # for debugging
@@ -81,7 +94,16 @@ function optimizeDir() {
 # no globbing
 set -f
 
+#echo "fixing permissions. requires root." 
+#sudo chmod a+rw $IMAGEPATH -R
+
 echo "optimizing images"
-optimizeDir o_png png
-optimizeDir o_jpg jpg jpeg
-rm $TEMPFILE
+
+# optimize
+optimizeDir getPngCmd png
+optimizeDir getJpegCmd jpg jpeg
+
+# remove any tempfile
+if [ -f $TEMPFILE ]; then
+	rm $TEMPFILE
+fi

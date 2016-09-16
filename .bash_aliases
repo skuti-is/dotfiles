@@ -25,10 +25,9 @@ alias imagemin="imagemin -p -o 7"
 # sudo apt-get install python-pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
 
-alias syncdb="/home/thrstn/Documents/scripts/bash/syncdb.sh"
-alias a2createvhost="sudo /home/thrstn/Documents/scripts/bash/createvhost.sh"
-alias optimimgs="/home/thrstn/Documents/scripts/bash/optimizeimages.sh"
-alias xrsync="rsync -av --exclude '*/static/files/*' --exclude '*/static/strevda/*' --exclude '*/static/news/*' --exclude '*/static/gallery/*' --exclude '*/static/employees/*' --exclude '*/static/tube/*'"
+alias syncdb="/home/thrstn/Projects/dotfiles/scripts/bash/syncdb.sh"
+alias optimimgs="/home/thrstn/Projects/dotfiles/scripts/bash/optimizeimages.sh"
+alias xrsync="rsync -av --exclude '*/static/files/*' --exclude '*/static/images/*' --exclude '*/static/strevda/*' --exclude '*/static/news/*' --exclude '*/static/gallery/*' --exclude '*/static/employees/*' --exclude '*/static/tube/*' --exclude '*/static/formbuilder/*' --exclude '*/cache/*' --exclude '*/static/fyrirspurnir/*'"
 
 alias _si="ssh root@sidux"
 alias _sa="ssh salix"
