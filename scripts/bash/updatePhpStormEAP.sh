@@ -26,7 +26,7 @@ HEADER=$(curl $URL --head --silent)
 # Check current installed version if available
 if [ -f "${BUILD_FILE}" ]
 then
-  CURRENT_VERSION=$(cat ${INSTALL_DIR}/build.txt | grep -Eo "([0-9]+\.[0-9]+)")
+  CURRENT_VERSION=$(cat ${INSTALL_DIR}/build.txt | grep -Eo "([0-9]+\.[0-9]+(\.[0-9]+)?+)")
   echo "Found PhpStorm-EAP-${CURRENT_VERSION} at ${INSTALL_DIR}"
   if [ "${CURRENT_VERSION}" == "${VERSION}" ]
   then

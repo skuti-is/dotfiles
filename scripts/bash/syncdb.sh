@@ -25,7 +25,7 @@ if [ "$DEST" == "" ]; then
 fi
 
 if [ "$HOST" == "" ]; then
-	HOST="manjaro.stefna.is"
+	HOST="dragora.stefna.is"
 fi
 
 
