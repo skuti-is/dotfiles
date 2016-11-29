@@ -4,9 +4,9 @@ filetype off
 let mapleader = "."
 
 "#Local dirs
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-set undodir=~/.vim/undo
+set backupdir=~/.vim.tmp/backups
+set directory=~/.vim.tmp/swaps
+set undodir=~/.vim.tmp/undo
 
 "# Settings
 "set autoindent					" Copy indent from last line when starting new line.
